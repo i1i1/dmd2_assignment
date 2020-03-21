@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+from time import time
+from transfer_data import create_dbs, transfer
+import query_1, query_2, query_3, query_4, query_5
+
+
+QUERIES = [
+    query_1.query,
+    query_2.query,
+    query_3.query,
+    query_4.query,
+    query_5.query,
+]
+
+
+def main():
+    mongo, postgres = create_dbs()
+    transfer(mongo, postgres)
+
+    for i, query in enumerate(QUERIES):
+        start = time()
+
+        print(f"\nRunning query {i+1}\n")
+        query(mongo)
+        print(f"\n--- %.3f seconds ---\n" % (time() - start))
+
+
+if __name__ == '__main__':
+    main()

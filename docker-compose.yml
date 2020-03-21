@@ -1,0 +1,21 @@
+version: '2.4'
+
+services:
+  postgres:
+    build: ./postgree
+    environment:
+      POSTGRES_DB: dvdrental
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  mongo:
+    image: mongo
+
+  ass1:
+    build: ./assignment
+    environment:
+      ACTOR_ID: $ACTOR_ID
+      CUSTOMER_ID: $CUSTOMER_ID
+    depends_on:
+      - postgres
+      - mongo

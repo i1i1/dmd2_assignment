@@ -1,0 +1,27 @@
+@startuml
+
+database "PostgreSql"
+database "MongoDB"
+
+package "Assignment" {
+  [main] -> [transer_data.py]
+
+  package "Queries" {
+      [main] -> [query_1.py]
+      [main] -> [query_2.py]
+      [main] -> [query_3.py]
+      [main] -> [query_4.py]
+      [main] -> [query_5.py]
+  }
+}
+
+[transer_data.py] -> PostgreSql
+[transer_data.py] -> MongoDB
+
+[query_1.py] -> MongoDB
+[query_2.py] -> MongoDB
+[query_3.py] -> MongoDB
+[query_4.py] -> MongoDB
+[query_5.py] -> MongoDB
+
+@enduml
